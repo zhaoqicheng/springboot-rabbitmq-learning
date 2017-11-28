@@ -2,6 +2,7 @@ package com.example.learning;
 
 import com.example.learning.common.Constants;
 import com.example.learning.common.DetailRes;
+import com.example.learning.encapsulation.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

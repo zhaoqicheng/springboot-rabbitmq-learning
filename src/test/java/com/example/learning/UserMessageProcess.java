@@ -2,6 +2,7 @@ package com.example.learning;
 
 
 import com.example.learning.common.DetailRes;
+import com.example.learning.encapsulation.MessageProcess;
 
 /**
  * Created by littlersmall on 16/6/28.

@@ -1,4 +1,4 @@
-package com.example.learning;
+package com.example.learning.encapsulation;
 
 import com.example.learning.common.Constants;
 import com.example.learning.common.DetailRes;
