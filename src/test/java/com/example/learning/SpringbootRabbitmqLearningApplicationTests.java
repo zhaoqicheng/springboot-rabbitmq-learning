@@ -113,8 +113,14 @@ public class SpringbootRabbitmqLearningApplicationTests {
 
     /**
      * 使用线程来消费   通道中的消息
+     * <p>
+     * 消费者  使用线程消费通道中的消息
+     * <p>
+     * 被@PreConstruct修饰的方法会在服务器卸载Servlet的时候运行，
+     * 并且只会被服务器调用一次，类似于Servlet的destroy()方法。
+     * 被@PreConstruct修饰的方法会在destroy()方法之后运行，在Servlet被彻底卸载之前。
      *
-     * @throws IOException
+     * 在实际的使用过程中，消费者通常作为init方法配合@PostConstruct 注解一起使用，无时无刻的消费通道中的消息；
      */
     @Test
     @PostConstruct
