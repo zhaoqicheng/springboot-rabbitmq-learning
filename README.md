@@ -26,3 +26,9 @@
 
 注：
     在test文件夹下的所有的JUNIT测试均可通过。
+    
+其他测试：
+localhost:8080/testMQRestComplex/createMQByComplex
+
+测试发送失败的充实机制：
+    将mq停止再往通道中发送消息不成功，程序会尝试重试链接mq发送消息。

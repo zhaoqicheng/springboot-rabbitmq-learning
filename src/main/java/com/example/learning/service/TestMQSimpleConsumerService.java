@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class TestMQConsumerService {
+public class TestMQSimpleConsumerService {
 
     @RabbitListener(queues = "user-simple")
     @RabbitHandler

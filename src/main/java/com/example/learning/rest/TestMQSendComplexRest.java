@@ -73,24 +73,24 @@ public class TestMQSendComplexRest {
      * 并且只会被服务器调用一次，类似于Servlet的destroy()方法。
      * 被@PreConstruct修饰的方法会在destroy()方法之后运行，在Servlet被彻底卸载之前。
      */
-    @PostConstruct
-    public void init() {
-        try {
-            System.out.println("我被实例化啦！！！！");
-            MQAccessBuilder mqAccessBuilder = new MQAccessBuilder(connectionFactory);
-
-            /**
-             * 这里不能new  要采用注入的方式
-             */
-            MessageProcess<User> reportLogProcess = userProcess;
-            threadPoolConsumer = new ThreadPoolConsumer.ThreadPoolConsumerBuilder<User>()
-                    .setThreadCount(Constants.THREAD_COUNT).setIntervalMils(Constants.INTERVAL_MILS)
-                    .setExchange(EXCHANGE).setRoutingKey(ROUTING).setQueue(QUEUE)
-                    .setMQAccessBuilder(mqAccessBuilder).setMessageProcess(reportLogProcess)
-                    .build();
-            threadPoolConsumer.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    @PostConstruct
+//    public void init() {
+//        try {
+//            System.out.println("我被实例化啦！！！！");
+//            MQAccessBuilder mqAccessBuilder = new MQAccessBuilder(connectionFactory);
+//
+//            /**
+//             * 这里不能new  要采用注入的方式
+//             */
+//            MessageProcess<User> reportLogProcess = userProcess;
+//            threadPoolConsumer = new ThreadPoolConsumer.ThreadPoolConsumerBuilder<User>()
+//                    .setThreadCount(Constants.THREAD_COUNT).setIntervalMils(Constants.INTERVAL_MILS)
+//                    .setExchange(EXCHANGE).setRoutingKey(ROUTING).setQueue(QUEUE)
+//                    .setMQAccessBuilder(mqAccessBuilder).setMessageProcess(reportLogProcess)
+//                    .build();
+//            threadPoolConsumer.start();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

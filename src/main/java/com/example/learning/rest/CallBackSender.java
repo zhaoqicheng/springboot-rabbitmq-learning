@@ -11,6 +11,8 @@ import java.util.UUID;
  * Created by zhaoqicheng on 2017/12/9.
  *
  * 整理  弄明白这一块的机制
+ *
+ * 回调处理（不分成功或失败）
  */
 @Component
 public class CallBackSender implements  RabbitTemplate.ConfirmCallback{
