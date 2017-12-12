@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * Created by zhaoqicheng on 16/5/11.
+ * Created by littlersmall on 16/5/11.
  *
  * 参考：
  *  感谢：
@@ -341,6 +341,20 @@ public class MQAccessBuilder {
     }
 
     private QueueingConsumer buildQueueConsumer(Connection connection, String queue) {
+
+        if(connection == null){
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+            System.out.println("无可用connection。。。");
+        }
+
+
         try {
             Channel channel = connection.createChannel(false);
             QueueingConsumer consumer = new QueueingConsumer(channel);

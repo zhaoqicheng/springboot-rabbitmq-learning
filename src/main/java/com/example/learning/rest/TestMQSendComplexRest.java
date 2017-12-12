@@ -1,10 +1,7 @@
 package com.example.learning.rest;
 
 import com.example.learning.common.Constants;
-import com.example.learning.encapsulation.MQAccessBuilder;
-import com.example.learning.encapsulation.MessageProcess;
-import com.example.learning.encapsulation.MessageSender;
-import com.example.learning.encapsulation.ThreadPoolConsumer;
+import com.example.learning.encapsulation.*;
 import com.example.learning.pojo.User;
 import com.example.learning.service.UserProcess;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -14,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by zhaoqicheng on 2017/12/9.
@@ -26,8 +25,8 @@ public class TestMQSendComplexRest {
     @Autowired
     ConnectionFactory connectionFactory;
 
-    @Autowired
-    private UserProcess userProcess;
+//    @Autowired
+//    private UserProcess userProcess;
 
     private MessageSender messageSender;
 
@@ -52,6 +51,7 @@ public class TestMQSendComplexRest {
      */
     @PostMapping(value = "createMQByComplex")
     public void senderExample() {
+
         User user = new User();
         user.setId(2);
         user.setName("王明-2");
@@ -73,24 +73,24 @@ public class TestMQSendComplexRest {
      * 并且只会被服务器调用一次，类似于Servlet的destroy()方法。
      * 被@PreConstruct修饰的方法会在destroy()方法之后运行，在Servlet被彻底卸载之前。
      */
-//    @PostConstruct
-//    public void init() {
-//        try {
-//            System.out.println("我被实例化啦！！！！");
-//            MQAccessBuilder mqAccessBuilder = new MQAccessBuilder(connectionFactory);
-//
-//            /**
-//             * 这里不能new  要采用注入的方式
-//             */
-//            MessageProcess<User> reportLogProcess = userProcess;
-//            threadPoolConsumer = new ThreadPoolConsumer.ThreadPoolConsumerBuilder<User>()
-//                    .setThreadCount(Constants.THREAD_COUNT).setIntervalMils(Constants.INTERVAL_MILS)
-//                    .setExchange(EXCHANGE).setRoutingKey(ROUTING).setQueue(QUEUE)
-//                    .setMQAccessBuilder(mqAccessBuilder).setMessageProcess(reportLogProcess)
-//                    .build();
-//            threadPoolConsumer.start();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @PostConstruct
+    public void init() {
+        try {
+            System.out.println("我被实例化啦！！！！");
+            MQAccessBuilder mqAccessBuilder = new MQAccessBuilder(connectionFactory);
+
+            /**
+             * 这里不能new  要采用注入的方式
+             */
+            MessageProcess<User> reportLogProcess = new UserProcess();
+            threadPoolConsumer = new ThreadPoolConsumer.ThreadPoolConsumerBuilder<User>()
+                    .setThreadCount(Constants.THREAD_COUNT).setIntervalMils(Constants.INTERVAL_MILS)
+                    .setExchange(EXCHANGE).setRoutingKey(ROUTING).setQueue(QUEUE)
+                    .setMQAccessBuilder(mqAccessBuilder).setMessageProcess(reportLogProcess)
+                    .build();
+            threadPoolConsumer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

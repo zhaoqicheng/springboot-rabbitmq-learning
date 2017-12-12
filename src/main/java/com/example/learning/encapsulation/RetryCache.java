@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Created by zhaoqicheng on 16/9/5.
+ * Created by littlersmall on 16/9/5.
  *
  * 发送消息给rabbitMQ 我们需要知道有没有发送成功
  * 对于发送成功或者不成功的解决方式：
