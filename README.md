@@ -1,11 +1,9 @@
-暂未有时间完成，等有时间完成...
-
 框架已经搭建完成，带有JUNIT测试，可直接运行
 
 借鉴与：http://www.jianshu.com/p/4112d78a8753
 
 改造部分：
-使用springboot框架。
+与springboot框架结合
 
 
 对rabbitmq的封装，有几个目标：
