@@ -30,7 +30,7 @@ public class SpringbootRabbitmqLearningApplicationTests {
     /**
      * EXCHANGE: 指定交换机，由交换机将消息分发至各个通道
      * ROUTING: routing key，来指定这个消息的路由规则，routing key需要与Exchange Type及binding key联合使用才能最终生效。
-     * QUEUE: 指定通道
+     * QUEUE: 指定通道  (通道中：生产者负责向通道中添加数据、消费者负责从通道中消费数据，通道是生产者负责声明的)
      */
     private static final String EXCHANGE = "example";
     private static final String ROUTING = "user-example";
